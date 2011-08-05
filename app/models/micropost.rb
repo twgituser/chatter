@@ -1,3 +1,5 @@
+# test 
+
 class Micropost < ActiveRecord::Base
   attr_accessible :content
   
