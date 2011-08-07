@@ -1,0 +1,10 @@
+<h1>Posts</h1>
+<p> 2nd header </p>
+<% for micropost in @microposts %>
+<div class="micropost">
+	<h2><%=h micropost.id %></h2>
+	<div class="content">
+		<%= simple_format(micropost.content) %>
+	</div>
+</div>
+<% end %>

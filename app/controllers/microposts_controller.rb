@@ -19,6 +19,10 @@ class MicropostsController <  ApplicationController
 	  redirect_back_or root_path
 	end
 	
+	def index
+	  @microposts = Micropost.find(:all, :limit => 10)
+	  end
+	
 	private
 	
 	def authorized_user

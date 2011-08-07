@@ -19,11 +19,32 @@ class User < ActiveRecord::Base
   validates :email, :presence => true,
                     :format => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
-  validates :password, :presence => true,
-                       :confirmation => true,
-                       :length => { :within => 6..40 }
+  
+   validates :password, :presence => true, :on => {:create, :update}
+   
+   validates :password, :confirmation => true
+   
+   validates :password, :length => { :within => 6..40}, :on => {:create, :update}
+  #validates :password, :presence => true,
+  #                     :confirmation => true,
+  #                     :length => { :within => 6..40 }
 
   before_save :encrypt_password
+  
+  before_create { generate_token(:auth_token)}
+  
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
+  
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.base64.tr("+/", "-_")
+    end while User.exists?(column => self[column])
+  end 
   
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)

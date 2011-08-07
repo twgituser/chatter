@@ -1,0 +1,17 @@
+xml.instruct!
+
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+ xml.channel do
+
+   xml.title       "paulsturgess.co.uk articles"
+   xml.link        url_for :only_path => false, :controller => 'microposts'
+   xml.description "paulsturgess.co.uk Ruby on Rails articles"
+
+   @microposts.each do |micropost|
+     xml.item do
+       xml.description article.content
+       end
+   end
+
+ end
+end
