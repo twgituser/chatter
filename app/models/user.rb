@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   
 #c h    validates :password, :presence => true, :on => :create
    
-#c h   validates :password, :confirmation => true
+   validates :password, :confirmation => true
    
 #c h    validates :password, :length => { :within => 6..40}, :on => {:create, :update}
   #validates :password, :presence => true,
