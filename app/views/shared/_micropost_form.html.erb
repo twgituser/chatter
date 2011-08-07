@@ -1,7 +1,10 @@
+<%= javascript_include_tag :ckeditor %> #this will include external files needed for ckeditor
+
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
-    <%= f.text_area :content %>
+  <%= cktext_area :content, :toolbar=>'Full', :width=>'400px', :height=>'200px' %>
+
   </div>
   <div class="actions">
     <%= f.submit "Submit" %>
