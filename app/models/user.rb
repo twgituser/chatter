@@ -20,11 +20,11 @@ class User < ActiveRecord::Base
                     :format => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
   
-   validates :password, :presence => true, :on => :create
+#c h    validates :password, :presence => true, :on => :create
    
-   validates :password, :confirmation => true
+#c h   validates :password, :confirmation => true
    
-   validates :password, :length => { :within => 6..40}, :on => {:create, :update}
+#c h    validates :password, :length => { :within => 6..40}, :on => {:create, :update}
   #validates :password, :presence => true,
   #                     :confirmation => true,
   #                     :length => { :within => 6..40 }
