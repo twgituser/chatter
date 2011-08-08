@@ -3,8 +3,8 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
-  <%= cktext_area :content, :toolbar=>'Full', :width=>'400px', :height=>'200px' %>
-
+  <%= f.cktext_area :content, :toolbar=>'Full', :width=>'400px', :height=>'200px' %>
+	
   </div>
   <div class="actions">
     <%= f.submit "Submit" %>
